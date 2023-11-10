@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Stack width={"100%"} height={'100vh'} alignItems={'center'} justifyContent={'center'}>
-        <h1>Who are you ?</h1>
+        <h1>Which one are you ?</h1>
         <h1>I'm a ___</h1>
         <Stack marginTop={10} flexDirection={'row'} width={"40%"} alignItems={'center'} justifyContent={'center'} columnGap={8}>
           <GradientButton>Recruiter</GradientButton>
@@ -15,7 +15,7 @@ export default function Home() {
         </Stack>
       </Stack>
 
-      <Stack width={"100%"} alignItems={"center"}>
+      <Stack width={"100%"} alignItems={"center"} height={"80vh"} >
         <RecruiterSection />
       </Stack>
 

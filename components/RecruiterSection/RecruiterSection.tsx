@@ -1,7 +1,10 @@
 'use client'
-import { Box, Stack, Tab, Tabs, Typography } from '@mui/material'
+import { Box, Chip, Stack, Tab, Tabs, Typography } from '@mui/material'
 import React, { useState } from 'react'
-
+import BarChart from '../BarChart/BarChart';
+import { Bar } from 'react-chartjs-2';
+import { randomInt } from 'crypto';
+import DoneIcon from '@mui/icons-material/Done';
 
 function RecruiterSection() {
     const [value, setValue] = useState(0);
@@ -9,6 +12,63 @@ function RecruiterSection() {
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
+
+
+    const chartData = [
+        {
+            label: "C#",
+            value: 4
+        },
+        {
+            label: "Typescript",
+            value: 3
+        },
+        {
+            label: "Python",
+            value: 2
+        },
+        {
+            label: "MSSQL",
+            value: 4
+        },
+        {
+            label: "MySql",
+            value: 3
+        },
+        {
+            label: "Postgres",
+            value: 2
+        },
+        {
+            label: "Linux",
+            value: 7
+        },
+        {
+            label: "Docker",
+            value: 5
+        },
+        {
+            label: "Kubernates",
+            value: 4
+        },
+        {
+            label: "Jenkins",
+            value: 2
+        },
+        {
+            label: "AWS",
+            value: 3
+        },
+        {
+            label: "Azure",
+            value: 3
+        },
+        {
+            label: "Oracle",
+            value: 3
+        }
+    ];
+    //const chartLabels = ['Category 1', 'Category 2', 'Category 3'];
     return (
         <>
             <h1>If you are a recruiter, here is something about me</h1>
@@ -25,16 +85,49 @@ function RecruiterSection() {
                     </Tabs>
                 </Box>
                 <TabPanel value={value} index={0}>
-                    <Typography variant='h6'>
-                        I'm a Full-stack Deveploper Mobile Developer DevOps-er
-                    </Typography>
-
+                    <Stack flexDirection={'row'} columnGap={1}>
+                        <Typography variant='h5'>I'm a</Typography>
+                        <Chip
+                            size='small'
+                            color='secondary'
+                            label="Full-stack deveploper"
+                            deleteIcon={<DoneIcon />}
+                        />
+                        <Chip
+                            size='small'
+                            color='secondary'
+                            label="Mobile developer"
+                            deleteIcon={<DoneIcon />}
+                        />
+                        <Chip
+                            size='small'
+                            color='secondary'
+                            label="DevOps Engineer"
+                            deleteIcon={<DoneIcon />}
+                        />
+                    </Stack>
+                    <ul>
+                        <li>
+                            <Typography>
+                                Full-stack Developer since 2019, using C# with ASP.NET as a back-end technology. Previously worked with React and currently using Next.js combined with TypeScript for the front end.
+                            </Typography>
+                        </li>
+                        <li>
+                            <Typography>
+                                Mobile Developer since 2020, specializing in React Native.
+                            </Typography>
+                        </li>
+                        <li>
+                            <Typography>
+                                DevOps Engineer since 2020, experienced with Linux, AWS, Azure, Oracle, and capable of setting up physical servers.
+                            </Typography>
+                        </li>
+                    </ul>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    Item Two
+                    <BarChart data={chartData.map(i => i.value)} labels={chartData.map(i => i.label)} />
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    Item Three
                 </TabPanel>
             </Stack>
         </>
@@ -66,11 +159,10 @@ function TabPanel(props: TabPanelProps) {
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
+            {...other}>
             {value === index && (
                 <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
+                    {children}
                 </Box>
             )}
         </div>
