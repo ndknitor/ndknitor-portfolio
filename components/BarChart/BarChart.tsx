@@ -30,7 +30,7 @@ const BarChart: React.FC<BarChartProps> = ({ data, labels, width, height }) => {
                         labels: labels,
                         datasets: [
                             {
-                                label: 'Experience',
+                                label: 'Year of experience',
                                 data: data,
                                 backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
                                 borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
@@ -45,6 +45,9 @@ const BarChart: React.FC<BarChartProps> = ({ data, labels, width, height }) => {
                                     display: true,
                                     text: "Skills",
                                 },
+                                ticks :{
+                                    color : "white"
+                                }
                             },
                             y: {
                                 title: {
@@ -52,8 +55,19 @@ const BarChart: React.FC<BarChartProps> = ({ data, labels, width, height }) => {
                                     text: "Year of experience",
                                 },
                                 beginAtZero: true,
+                                ticks :{
+                                    color : "white"
+                                }
                             },
+                            
                         },
+                        plugins:{
+                            legend: {
+                                labels: {
+                                    color: 'white'
+                                }
+                            },
+                        }
                     },
                 });
             }

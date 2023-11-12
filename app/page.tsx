@@ -15,7 +15,7 @@ export default function Home() {
         </Stack>
       </Stack>
 
-      <Stack width={"100%"} alignItems={"center"} height={"80vh"} >
+      <Stack width={"100%"} alignItems={"center"} height={"90vh"} >
         <RecruiterSection />
       </Stack>
 
