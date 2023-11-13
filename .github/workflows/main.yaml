@@ -1,0 +1,54 @@
+name: Build and Deploy Next.js
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: |
+          npm install
+          
+      - name: Build Next.js
+        run: |
+          npm run build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Switch to the "page" branch
+        run: |
+          git checkout -b page
+          
+      - name: Copy build artifacts to "page" branch
+        run: |
+          mkdir -p page
+          cp -r out/* /
+
+      - name: Commit and Push Changes
+        run: |
+          git add .
+          git commit -m "Build and deploy Next.js static assets"
+          git push origin page

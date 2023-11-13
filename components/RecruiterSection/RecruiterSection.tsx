@@ -255,6 +255,7 @@ function RecruiterSection() {
                         {
                             toolData.map(item =>
                                 <Tooltip
+                                    key={item.title}
                                     title={
                                         <Typography>
                                             {item.title}
