@@ -39,6 +39,7 @@ const BarChart: React.FC<BarChartProps> = ({ data, labels, width, height }) => {
                         ],
                     },
                     options: {
+                        indexAxis : "y",
                         scales: {
                             x: {
                                 title: {

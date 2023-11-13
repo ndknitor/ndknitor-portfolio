@@ -1,7 +1,7 @@
 'use client'
 import RecruiterSection from "@/components/RecruiterSection/RecruiterSection";
 import GradientButton from "@/components/GradientButton/GradientButton";
-import { Stack } from "@mui/material";
+import { Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import { useRef, useState } from "react";
 import GirlSection from "@/components/GirlSection/GirlSection";
 
@@ -17,6 +17,8 @@ export default function Home() {
   const scrollToGirlSection = () => {
     girlSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <>
       <Stack width={"100%"} height={'100vh'} alignItems={'center'} justifyContent={'center'}>
@@ -29,7 +31,7 @@ export default function Home() {
           </Stack>
         </Stack>
 
-        <Stack marginTop={10} flexDirection={'row'} width={"40%"} alignItems={'center'} justifyContent={'center'} columnGap={8}>
+        <Stack rowGap={5} flexDirection={isSmallScreen ? 'column' : 'row'} marginTop={10} width={"40%"} alignItems={'center'} justifyContent={'center'} columnGap={8}>
           <GradientButton onClick={scrollToRecruiterSection} onMouseEnter={() => { setText("Recruiter"); setActive(true) }} onMouseLeave={() => setActive(false)}>Recruiter</GradientButton>
           <GradientButton onClick={scrollToGirlSection} onMouseEnter={() => { setText("Girl"); setActive(true) }} onMouseLeave={() => setActive(false)}>Girl</GradientButton>
           <GradientButton onClick={scrollToGirlSection} onMouseEnter={() => { setText("Gay"); setActive(true) }} onMouseLeave={() => setActive(false)}>Gay</GradientButton>
@@ -37,7 +39,7 @@ export default function Home() {
       </Stack>
 
       <main ref={recruiterSectionRef}>
-        <Stack width={"100%"} alignItems={"center"} height={"100vh"} >
+        <Stack width={"100%"} alignItems={"center"} height={isSmallScreen ? "200vh" : "100vh"} >
           <RecruiterSection />
         </Stack>
       </main>

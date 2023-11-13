@@ -1,5 +1,5 @@
 'use client'
-import { Box, Chip, Stack, Tab, Tabs, ThemeProvider, Tooltip, Typography, createTheme } from '@mui/material'
+import { Box, Chip, Stack, Tab, Tabs, ThemeProvider, Tooltip, Typography, createTheme, useMediaQuery, useTheme } from '@mui/material'
 import React, { useState } from 'react'
 import BarChart from '../BarChart/BarChart';
 import Image from 'next/image';
@@ -27,6 +27,7 @@ function RecruiterSection() {
     const handleProjectChange = (event: React.SyntheticEvent, newValue: number) => {
         setProjectValue(newValue);
     };
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     const chartData = [
         {
@@ -158,8 +159,8 @@ function RecruiterSection() {
 
     return (
         <ThemeProvider theme={theme}>
-            <h1 style={{ marginBottom: 20 }}>If you are a recruiter, here is something about me</h1>
-            <Stack width={"50%"} boxShadow={16} borderRadius={4}>
+            <h1 style={{ marginBottom: 20, textAlign: "center" }}>If you are a recruiter, here is something about me</h1>
+            <Stack width={"80%"} boxShadow={16} borderRadius={4}>
                 <Box sx={{ width: '100%' }}>
                     <Tabs value={value} onChange={handleChange}
                         textColor="inherit"
@@ -171,20 +172,22 @@ function RecruiterSection() {
                 </Box>
                 <TabPanel
                     value={value} index={0}>
-                    <Stack flexDirection={"row"} alignItems={"center"} columnGap={1}>
+                    <Stack flexDirection={isSmallScreen ? "column" : "row"} alignItems={"center"} >
                         <Typography variant='h4'>Basic Information:</Typography>
-                        <Link href={"https://github.com/ndknitor"}>
-                            <Image src={"/github.svg"} alt='github' width={30} height={30} />
-                        </Link>
-                        <Link href={"https://www.linkedin.com/in/nguy%C3%AAn-ng%C3%B4-b45368286/"}>
-                            <Image src={"/linkedin.svg"} alt='linkedin' width={30} height={30} />
-                        </Link>
-                        <Link href={`mailto:yookhoinguyen@gmail.com?subject=${subject}&body=${body}`}>
-                            <Image src={"/email.svg"} alt='email' width={30} height={30} />
-                        </Link>
-                        <Link href={"https://www.facebook.com/profile.php?id=100010300356555"}>
-                            <Image src={"/facebook.svg"} alt='facebook' width={30} height={30} />
-                        </Link>
+                        <Stack flexDirection={"row"} columnGap={1}>
+                            <Link href={"https://github.com/ndknitor"}>
+                                <Image src={"/github.svg"} alt='github' width={30} height={30} />
+                            </Link>
+                            <Link href={"https://www.linkedin.com/in/nguy%C3%AAn-ng%C3%B4-b45368286/"}>
+                                <Image src={"/linkedin.svg"} alt='linkedin' width={30} height={30} />
+                            </Link>
+                            <Link href={`mailto:yookhoinguyen@gmail.com?subject=${subject}&body=${body}`}>
+                                <Image src={"/email.svg"} alt='email' width={30} height={30} />
+                            </Link>
+                            <Link href={"https://www.facebook.com/profile.php?id=100010300356555"}>
+                                <Image src={"/facebook.svg"} alt='facebook' width={30} height={30} />
+                            </Link>
+                        </Stack>
                     </Stack>
                     <Stack flexDirection={"row"}>
                         <Stack width={"70%"}>
@@ -207,26 +210,28 @@ function RecruiterSection() {
                         </Stack>
                     </Stack>
 
-                    <Stack flexDirection={'row'} columnGap={1}>
+                    <Stack flexDirection={isSmallScreen ? "column" : 'row'} >
                         <Typography variant='h4'>I'm a</Typography>
-                        <Chip
-                            style={{ fontSize: 16 }}
-                            size='medium'
-                            color='secondary'
-                            label="Full-stack deveploper"
-                        />
-                        <Chip
-                            style={{ fontSize: 16 }}
-                            size='medium'
-                            color='secondary'
-                            label="Mobile developer"
-                        />
-                        <Chip
-                            style={{ fontSize: 16 }}
-                            size='medium'
-                            color='secondary'
-                            label="DevOps Engineer"
-                        />
+                        <Stack flexDirection={isSmallScreen ? "column" : "row"} alignItems={"center"} rowGap={1}  >
+                            <Chip
+                                style={{ fontSize: 16, width: isSmallScreen ? "60%" : "100%" }}
+                                size='medium'
+                                color='secondary'
+                                label="Full-stack deveploper"
+                            />
+                            <Chip
+                                style={{ fontSize: 16, width: "60%" }}
+                                size='medium'
+                                color='secondary'
+                                label="Mobile developer"
+                            />
+                            <Chip
+                                style={{ fontSize: 16, width: "60%" }}
+                                size='medium'
+                                color='secondary'
+                                label="DevOps Engineer"
+                            />
+                        </Stack>
                     </Stack>
                     <ul>
                         <li>
@@ -246,7 +251,7 @@ function RecruiterSection() {
                         </li>
                     </ul>
                     <Typography variant='h4'>Tools i have used for development process</Typography>
-                    <Stack columnGap={2} flexDirection={"row"} justifyContent={"center"} marginTop={2}>
+                    <Stack columnGap={2} flexDirection={"row"} justifyContent={"center"} flexWrap={"wrap"} marginTop={2}>
                         {
                             toolData.map(item =>
                                 <Tooltip
@@ -262,7 +267,7 @@ function RecruiterSection() {
                     </Stack>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <BarChart data={chartData.map(i => i.value)} labels={chartData.map(i => i.label)} />
+                    <BarChart data={chartData.map(i => i.value)} labels={chartData.map(i => i.label)} height={isSmallScreen ? 600 : undefined} />
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     <Box sx={{ width: '100%' }}>
