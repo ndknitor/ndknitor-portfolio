@@ -1,5 +1,5 @@
 'use client'
-import { Box, Chip, Stack, Tab, Tabs, ThemeProvider, Tooltip, Typography, createTheme, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Chip, Stack, Tab, Tabs, ThemeProvider, Tooltip, Typography, createTheme, useMediaQuery } from '@mui/material'
 import React, { useState } from 'react'
 import BarChart from '../BarChart/BarChart';
 import Image from 'next/image';
@@ -211,8 +211,8 @@ function RecruiterSection() {
                     </Stack>
 
                     <Stack flexDirection={isSmallScreen ? "column" : 'row'} >
-                        <Typography variant='h4'>I'm a</Typography>
-                        <Stack flexDirection={isSmallScreen ? "column" : "row"} alignItems={"center"} rowGap={1}  >
+                        <Typography variant='h4' marginRight={1}>I'm a</Typography>
+                        <Stack flexDirection={isSmallScreen ? "column" : "row"} alignItems={"center"} rowGap={1} columnGap={1}  >
                             <Chip
                                 style={{ fontSize: 16, width: isSmallScreen ? "60%" : "100%" }}
                                 size='medium'
