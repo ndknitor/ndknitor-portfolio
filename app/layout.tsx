@@ -10,6 +10,8 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: "Ndknitor",
   description: '',
+  manifest : "/site.webmanifest",
+  icons: ["/favicon-32x32.png", "/favicon-16x16.png"]
 }
 
 
