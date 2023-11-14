@@ -125,15 +125,15 @@ function RecruiterSection() {
             alt: "Debian"
         }
     ];
-    const subject = encodeURIComponent("Thư Mời Ứng Tuyển: [Vị Trí Công Việc] - [Tên Công Ty]");
+    const subject = encodeURIComponent("Thư Mời Ứng Tuyển: (Full-stack developer/DevOps Engineer) - [Tên Công Ty]");
     const body = encodeURIComponent(`Chào (anh/em/bạn) Ngô Đình Khôi Nguyên,
 
-    Tôi là [Tên của Bạn], đại diện cho đội ngũ nhân sự tại [Tên Công Ty]. Chúng tôi đang tìm kiếm một ứng viên có kinh nghiệm và năng lực cho vị trí [Vị Trí Công Việc].
+    Tôi là [Tên của Bạn], đại diện cho đội ngũ nhân sự tại [Tên Công Ty]. Chúng tôi đang tìm kiếm một ứng viên có kinh nghiệm và năng lực cho vị trí (Full-stack developer/DevOps Engineer).
     
     [Thông tin về Công Ty - văn hóa, sứ mệnh, và mục tiêu].
     
     Vị Trí Công Việc:
-    - Tên Vị Trí: [Vị Trí Công Việc]
+    - Tên Vị Trí: (Full-stack developer/DevOps Engineer)
     - Địa Điểm: [Địa Điểm Công Việc]
     - Mô Tả Công Việc: [Mô tả ngắn về công việc]
     
